@@ -1,6 +1,7 @@
 # Vault
 
 ![Molecule](https://github.com/DaazKu/ansible-vault/actions/workflows/molecule.yml/badge.svg?branch=master&event=push)
+[![Galaxy](https://img.shields.io/badge/Galaxy-ansible__vault-informational?logo=Ansible&logoColor=848c96)](https://galaxy.ansible.com/daazku/ansible_vault)
 
 This ansible role install Vault and expect you to **supply your own configuration templates**.
 
