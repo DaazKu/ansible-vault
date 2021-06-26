@@ -30,7 +30,7 @@ For these reasons, this role handles the installation of Vault and use your supp
 
 ### `vault_data_dir`
 - Vault data directory for local storage
-  - This var is there for your convenience
+  - This var is there for your convenience. `/var/lib/vault` would be appropriate here.
 - Default value: `''`
 
 ### `vault_extra_config_dir`

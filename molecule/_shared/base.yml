@@ -34,7 +34,7 @@ provisioner:
   inventory:
     group_vars:
       vault_instances:
-        vault_data_dir: /var/vault/data
+        vault_data_dir: /var/lib/vault
         vault_config_template: molecule/_shared/config.hcl.j2
 verifier:
   name: testinfra
