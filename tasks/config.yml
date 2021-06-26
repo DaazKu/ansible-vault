@@ -1,4 +1,4 @@
-- name: Creating vault configuration folders
+- name: Creating vault configuration directories
   file:
     path: "{{ item }}"
     owner: "{{ vault_user }}"
@@ -10,7 +10,7 @@
     - "{{ vault_config_dir }}"
     - "{{ vault_extra_config_dir }}"
 
-- name: Creating vault data folder
+- name: Creating vault data directory
   file:
     path: "{{ path }}"
     owner: "{{ vault_user }}"
