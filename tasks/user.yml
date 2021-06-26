@@ -1,0 +1,14 @@
+- name: Creating vault group
+  group:
+    name: "{{ vault_group }}"
+    state: present
+  become: true
+
+- name: Creating vault user
+  user:
+    createhome: false
+    group: "{{ vault_group }}"
+    name: "{{ vault_user }}"
+    shell: /bin/false
+    system: true
+  become: true

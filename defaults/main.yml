@@ -1,0 +1,9 @@
+vault_bin_dir: /usr/local/bin
+vault_config_dir: /etc/vault
+vault_data_dir: ''
+vault_extra_config_dir: "{{ vault_config_dir }}/vault.d"
+vault_extra_config_templates: []
+vault_group: vault
+vault_log_dir: ''
+vault_user: vault
+vault_version: '1.7.3'

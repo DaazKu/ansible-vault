@@ -1,0 +1,55 @@
+- name: Creating vault configuration folders
+  file:
+    path: "{{ item }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0770
+    state: directory
+  become: true
+  loop:
+    - "{{ vault_config_dir }}"
+    - "{{ vault_extra_config_dir }}"
+
+- name: Creating vault data folder
+  file:
+    path: "{{ path }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0770
+    recurse: true
+    state: directory
+  become: true
+  when: path
+  loop:
+    - "{{ vault_data_dir }}"
+    - "{{ vault_log_dir }}"
+  loop_control:
+    loop_var: path
+  tags:
+    # `recurse: true` makes idempotency fail in molecule ¯\_(ツ)_/¯
+    - molecule-idempotence-notest
+
+- name: Configuring vault (main)
+  template:
+    src: "{{ vault_config_template }}"
+    dest: "{{ vault_config_dir }}/{{ (vault_config_template | regex_search('(?:.+/)?(.+?)(?:\\.j2)?$', '\\1'))[0]  }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0660
+  become: true
+  notify:
+    - restart vault
+
+- name: Configuring vault (extra)
+  template:
+    src: "{{ vault_extra_config_template }}"
+    dest: "{{ vault_extra_config_dir }}/{{ (vault_extra_config_template | regex_search('(?:.+/)?(.+?)(?:\\.j2)?$', '\\1'))[0] }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0660
+  become: true
+  loop: "{{ vault_extra_config_templates }}"
+  loop_control:
+    loop_var: vault_extra_config_template
+  notify:
+    - restart vault
