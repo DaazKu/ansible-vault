@@ -2,8 +2,8 @@ platforms:
   - name: ubuntu-18.04
     groups:
       - vault_instances
-    image: jrei/systemd-ubuntu:18.04
+    image: dokken/ubuntu-18.04
+    pre_build_image: true
     command: /lib/systemd/systemd
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
+    cgroup_parent: docker.slice

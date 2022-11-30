@@ -57,4 +57,4 @@ For these reasons, this role handles the installation of Vault and use your supp
 
 ### `vault_version`
 - Version to install
-- Default value: 1.7.3
+- Default value: 1.12.1

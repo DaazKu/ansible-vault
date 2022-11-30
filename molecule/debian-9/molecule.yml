@@ -2,8 +2,8 @@ platforms:
   - name: debian-9
     groups:
       - vault_instances
-    image: jrei/systemd-debian:9
+    image: dokken/debian-9
+    pre_build_image: true
     command: /lib/systemd/systemd
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
+    cgroup_parent: docker.slice

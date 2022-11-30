@@ -2,8 +2,8 @@ platforms:
   - name: debian-10
     groups:
       - vault_instances
-    image: jrei/systemd-debian:10
+    image: dokken/debian-10
+    pre_build_image: true
     command: /lib/systemd/systemd
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
+    cgroup_parent: docker.slice

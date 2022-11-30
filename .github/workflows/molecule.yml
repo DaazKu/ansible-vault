@@ -5,14 +5,14 @@ on:
     branches:
       - master
     paths-ignore:
-      - '.gitignore'
-      - '**.md'
-      - 'meta/main.yml'
+      - ".gitignore"
+      - "**.md"
+      - "meta/main.yml"
   pull_request:
     paths-ignore:
-      - '.gitignore'
-      - '**.md'
-      - 'meta/main.yml'
+      - ".gitignore"
+      - "**.md"
+      - "meta/main.yml"
 
 jobs:
   build:
@@ -28,11 +28,11 @@ jobs:
           - ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Set up Python 3
         uses: actions/setup-python@v1
         with:
-          python-version: "3.x"
+          python-version: "3.9"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip pip-tools

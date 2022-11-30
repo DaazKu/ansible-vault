@@ -1,9 +1,14 @@
-- include_tasks: pre-flight.yml
+- name: Pre flight checks
+  ansible.builtin.include_tasks: pre-flight.yml
 
-- include_tasks: user.yml
+- name: Setup user
+  ansible.builtin.include_tasks: user.yml
 
-- include_tasks: install.yml
+- name: Install Vault
+  ansible.builtin.include_tasks: install.yml
 
-- include_tasks: config.yml
+- name: Configure vault
+  ansible.builtin.include_tasks: config.yml
 
-- include_tasks: service.yml
+- name: Install Vault service
+  ansible.builtin.include_tasks: service.yml

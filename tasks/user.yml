@@ -1,11 +1,11 @@
 - name: Creating vault group
-  group:
+  ansible.builtin.group:
     name: "{{ vault_group }}"
     state: present
   become: true
 
 - name: Creating vault user
-  user:
+  ansible.builtin.user:
     createhome: false
     group: "{{ vault_group }}"
     name: "{{ vault_user }}"

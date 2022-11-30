@@ -1,11 +1,11 @@
 - name: Installing HashiCorp Vault
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: true
-    src: "https://releases.hashicorp.com/vault/{{ vault_version|string }}/vault_{{ vault_version|string }}_linux_amd64.zip"
+    src: "https://releases.hashicorp.com/vault/{{ vault_version | string }}/vault_{{ vault_version | string }}_linux_amd64.zip"
     dest: "{{ vault_bin_dir }}/"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
     mode: 0770
   become: true
   notify:
-    - restart vault
+    - Restart vault

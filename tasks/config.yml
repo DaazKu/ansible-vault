@@ -1,5 +1,5 @@
 - name: Creating vault configuration directories
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
@@ -11,7 +11,7 @@
     - "{{ vault_extra_config_dir }}"
 
 - name: Creating vault data directory
-  file:
+  ansible.builtin.file:
     path: "{{ path }}"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
@@ -30,18 +30,18 @@
     - molecule-idempotence-notest
 
 - name: Configuring vault (main)
-  template:
+  ansible.builtin.template:
     src: "{{ vault_config_template }}"
-    dest: "{{ vault_config_dir }}/{{ (vault_config_template | regex_search('(?:.+/)?(.+?)(?:\\.j2)?$', '\\1'))[0]  }}"
+    dest: "{{ vault_config_dir }}/{{ (vault_config_template | regex_search('(?:.+/)?(.+?)(?:\\.j2)?$', '\\1'))[0] }}"
     owner: "{{ vault_user }}"
     group: "{{ vault_group }}"
     mode: 0660
   become: true
   notify:
-    - restart vault
+    - Restart vault
 
 - name: Configuring vault (extra)
-  template:
+  ansible.builtin.template:
     src: "{{ vault_extra_config_template }}"
     dest: "{{ vault_extra_config_dir }}/{{ (vault_extra_config_template | regex_search('(?:.+/)?(.+?)(?:\\.j2)?$', '\\1'))[0] }}"
     owner: "{{ vault_user }}"
@@ -52,4 +52,4 @@
   loop_control:
     loop_var: vault_extra_config_template
   notify:
-    - restart vault
+    - Restart vault
