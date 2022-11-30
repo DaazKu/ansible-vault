@@ -1,11 +1,11 @@
-- name: reload systemd
-  systemd:
+- name: Reload systemd
+  ansible.builtin.systemd:
     name: vault
     daemon_reload: true
   become: true
 
-- name: restart vault
-  service:
+- name: Restart vault
+  ansible.builtin.service:
     name: vault
     state: restarted
   become: true

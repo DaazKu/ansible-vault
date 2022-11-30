@@ -1,8 +1,10 @@
 galaxy_info:
+  namespace: daazku
+  role_name: ansible_vault
   author: Alexandre (DaazKu) Chouinard
   description: Vault role
   license: MIT
-  min_ansible_version: "2.10"
+  min_ansible_version: "7"
 
   platforms:
     - name: Debian
