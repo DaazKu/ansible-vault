@@ -1,9 +1,0 @@
-platforms:
-  - name: debian-12
-    groups:
-      - vault_instances
-    image: dokken/debian-12
-    pre_build_image: true
-    command: /lib/systemd/systemd
-    privileged: true
-    cgroup_parent: docker.slice
