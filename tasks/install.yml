@@ -7,5 +7,13 @@
     group: "{{ vault_group }}"
     mode: 0770
   become: true
+
+- name: Set cap_ipc_lock=+ep capability on vault's binary
+  community.general.capabilities:
+    path: "{{ vault_bin_dir }}/vault"
+    capability: cap_ipc_lock=+ep
+    state: present
+  become: true
+  changed_when: false
   notify:
     - Restart vault
