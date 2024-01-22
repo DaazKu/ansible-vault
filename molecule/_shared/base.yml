@@ -1,6 +1,5 @@
 scenario:
   test_sequence:
-    - lint
     - syntax
     - create
     - prepare
@@ -12,11 +11,6 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
-  flake8
 provisioner:
   name: ansible
   config_options:

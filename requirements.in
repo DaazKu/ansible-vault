@@ -1,5 +1,6 @@
 ansible
 ansible-lint
+ansible-modules-hashivault
 autopep8
 docker
 flake8
