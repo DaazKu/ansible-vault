@@ -6,4 +6,4 @@ vault_extra_config_templates: []
 vault_group: vault
 vault_log_dir: ""
 vault_user: vault
-vault_version: "1.12.1"
+vault_version: "1.15.4"

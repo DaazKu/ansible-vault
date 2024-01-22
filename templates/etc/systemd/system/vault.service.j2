@@ -4,8 +4,11 @@ Documentation=https://www.vaultproject.io/docs/
 Requires=network-online.target
 After=network-online.target
 ConditionFileExists={{ vault_config_dir }}/{{ (vault_config_template | regex_search('(?:.+/)?(.+?)(?:\\.j2)?$', '\\1'))[0] }}
+StartLimitIntervalSec=60
+StartLimitBurst=3
 
 [Service]
+Type=notify
 User={{ vault_user }}
 Group={{ vault_group }}
 ProtectSystem=full
@@ -13,8 +16,7 @@ ProtectHome=read-only
 PrivateTmp=yes
 PrivateDevices=yes
 SecureBits=keep-caps
-Capabilities=CAP_IPC_LOCK+ep
-AmbientCapabilities=CAP_SYSLOG CAP_IPC_LOCK
+AmbientCapabilities=CAP_IPC_LOCK
 CapabilityBoundingSet=CAP_SYSLOG CAP_IPC_LOCK
 NoNewPrivileges=yes
 ExecStart=/bin/sh -c 'exec {{ vault_bin_dir }}/vault server \
@@ -27,11 +29,9 @@ KillSignal=SIGINT
 Restart=on-failure
 RestartSec=5
 TimeoutStopSec=30
-StartLimitInterval=60
-StartLimitBurst=3
-LimitNOFILE=524288
-LimitNPROC=524288
+LimitNOFILE=65536
 LimitMEMLOCK=infinity
+LimitCORE=0
 
 [Install]
 WantedBy=multi-user.target
